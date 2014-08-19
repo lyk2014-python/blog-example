@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+{% for post in posts %}
+
+    <h3><a href="{% url "detail" post.slug %}">{{ post.title }}</a></h3>
+    <p>{{ post.description }}</p>
+    <p>Category: {{ post.category.title }}</p>
+    <hr/>
+
+{% endfor %}
+
+</body>
+</html>
