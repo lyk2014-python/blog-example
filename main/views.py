@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from main.models import Post
+from main.models import Post, Category
 
 
 def index(request):
@@ -18,4 +18,18 @@ def post_detail(request, slug):
 
     return render_to_response("detail.html", {
         "post": post
+    }, RequestContext(request))
+
+def category(request, pk):
+    posts = Post.objects.filter(category_id=pk)
+
+    return render_to_response("category.html", {
+        "posts": posts
+    }, RequestContext(request))
+
+def tag(request, pk):
+    posts = Post.objects.filter(tags__id=pk)
+
+    return render_to_response("tag.html", {
+        "posts": posts
     }, RequestContext(request))
